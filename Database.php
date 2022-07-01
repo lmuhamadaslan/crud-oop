@@ -76,4 +76,15 @@ class Database
             }
         }
     }
+
+    public function deleteData($id)
+    {
+        $query = "DELETE FROM tbl_customers WHERE customers_id = '$id'";
+        $sql = $this->conn->query($query);
+        if ($sql == true) {
+            header("Location:Index.php?msg3=delete");
+        } else {
+            echo "Delete Failed Try again!";
+        }
+    }
 }
