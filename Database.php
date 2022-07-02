@@ -21,10 +21,10 @@ class Database
 
     public function insertData($post)
     {
-        $customers_name = $this->conn->real_escape_string($_POST['customers_name']);
-        $customers_email = $this->conn->real_escape_string($_POST['customers_email']);
-        $customers_salary = $this->conn->real_escape_string($_POST['customers_salary']);
-        $query = "INSERT INTO tbl_customers (customers_name, customers_email, customers_salary) VALUES ('$customers_name', '$customers_email', '$customers_salary'))";
+        $name = $this->conn->real_escape_string($_POST['customers_name']);
+        $email = $this->conn->real_escape_string($_POST['customers_email']);
+        $salary = $this->conn->real_escape_string($_POST['customers_salary']);
+        $query = "INSERT INTO tbl_customers (customers_name, customers_email, customers_salary) VALUES ('$name', '$email', '$salary')";
         $sql = $this->conn->query($query);
         if ($sql == true) {
             header("Location:Index.php?msg1=insert");
@@ -53,7 +53,7 @@ class Database
         $query = "SELECT * FROM tbl_customers WHERE customers_id = '$id'";
         $result = $this->conn->query($query);
         if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc());
+            $row = $result->fetch_assoc();
             return $row;
         } else {
             echo "No Data Found";
@@ -65,7 +65,7 @@ class Database
         $customers_name = $this->conn->real_escape_string($_POST['ucustomers_name']);
         $customers_email = $this->conn->real_escape_string($_POST['ucustomers_email']);
         $customers_salary = $this->conn->real_escape_string($_POST['ucustomers_salary']);
-        $id = $this->conn->real_escape_string($_POST['id']);
+        $id = $this->conn->real_escape_string($_POST['ucustomers_id']);
         if (!empty($id) && !empty($postData)) {
             $query = "UPDATE tbl_customers SET customers_name = '$customers_name', customers_email = '$customers_email', customers_salary = '$customers_salary' WHERE customers_id = '$id'";
             $sql = $this->conn->query($query);
