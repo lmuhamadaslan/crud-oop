@@ -26,7 +26,7 @@ class Database
         $query = "INSERT INTO tbl_customers (customers_name, customers_email, customers_salary) VALUES ('$name', '$email', '$salary')";
         $sql = $this->conn->query($query);
         if ($sql == true) {
-            header("Location:Index.php?msg1=insert");
+            header("Location:Dashboard.php?msg1=insert");
         } else {
             echo ("Registration Failed Try again!");
         }
@@ -69,7 +69,7 @@ class Database
             $query = "UPDATE tbl_customers SET customers_name = '$customers_name', customers_email = '$customers_email', customers_salary = '$customers_salary' WHERE customers_id = '$id'";
             $sql = $this->conn->query($query);
             if ($query == true) {
-                header("Location:Index.php?msg2=update");
+                header("Location:Dashboard.php?msg2=update");
             } else {
                 echo "Update Failed Try again!";
             }
@@ -81,7 +81,7 @@ class Database
         $query = "DELETE FROM tbl_customers WHERE customers_id = '$id'";
         $sql = $this->conn->query($query);
         if ($sql == true) {
-            header("Location:Index.php?msg3=delete");
+            header("Location:Dashboard.php?msg3=delete");
         } else {
             echo "Delete Failed Try again!";
         }
